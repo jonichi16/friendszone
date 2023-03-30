@@ -52,6 +52,7 @@ gem "devise"
 
 group :test do
   gem "capybara", "~> 3.38"
+  gem "shoulda-matchers", "~> 5.3"
   gem "webdrivers", "~> 5.2"
 end
 
