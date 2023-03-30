@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validate :validate_username
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :username, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }
+  validates :name, presence: true
 
   def login
     @login || username || email
