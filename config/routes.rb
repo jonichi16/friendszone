@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root "posts#index"
+  authenticated :user do
+    root to: "posts#index", as: :authenticated_root
+  end
+  root to: redirect("/users/sign_in")
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
