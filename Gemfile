@@ -48,6 +48,8 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "devise"
+
 group :test do
   gem "capybara", "~> 3.38"
   gem "webdrivers", "~> 5.2"
