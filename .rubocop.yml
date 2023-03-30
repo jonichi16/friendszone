@@ -66,5 +66,9 @@ Style/WordArray:
   Exclude:
     - db/schema.rb
 
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - db/schema.rb
+
 Rails/FilePath:
   Enabled: false
