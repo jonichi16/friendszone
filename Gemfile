@@ -49,6 +49,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "devise"
+gem "tailwindcss-rails", "~> 2.0"
 
 group :test do
   gem "capybara", "~> 3.38"
