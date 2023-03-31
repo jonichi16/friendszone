@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+def user_params(user_name, user_gender)
+  {
+    username: Faker::Internet.username(specifier: 5..10),
+    email: Faker::Internet.unique.email,
+    password: "password",
+    name: user_name,
+    gender: user_gender,
+    location: Faker::Address.city
+  }
+end
+
+50.times do |i|
+  first_name = i <= 23 ? Faker::Name.female_first_name : Faker::Name.male_first_name
+  name = "#{first_name} #{Faker::Name.last_name}"
+  gender = i <= 23 ? "female" : "male"
+
+  User.create!(user_params(name, gender))
+end
