@@ -16,12 +16,10 @@ Lint/UselessAssignment:
 RSpec/MultipleExpectations:
   Max: 3
   Exclude:
-    - 'system/**/*'
+    - 'features/**/*'
 
 RSpec/DescribeClass:
   Exclude:
     - 'requests/**/*'
-    - 'system/**/*'
-    - 'tasks/**/*'
-    - 'seeds/**/*'
+    - 'features/**/*'
     - 'features/**/*'

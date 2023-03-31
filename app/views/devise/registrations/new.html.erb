@@ -2,50 +2,84 @@
   <h2 class="font-black text-4xl text-center mb-8">Sign up</h2>
     
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
     
     <div class="mb-5 space-y-1">
-      <%= f.label :email, class: "font-bold" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full text-xl rounded-xl" %>
+      <%= f.label :email, class: "font-bold" do %>
+        Email<span class="text-red-700">*</span>
+      <% end %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full text-xl rounded-xl", data: { test_id: "email-field" } %>
+      <% resource.errors.full_messages_for(:email).each do |message| %>
+        <div class="text-xs text-red-700 font-bold">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
     
     <div class="mb-5 space-y-1">
-      <%= f.label :name, class: "font-bold" %>
-      <%= f.text_field :name, class: "w-full text-xl rounded-xl" %>
+      <%= f.label :name, class: "font-bold" do %>
+        Name<span class="text-red-700">*</span>
+      <% end %>
+      <%= f.text_field :name, class: "w-full text-xl rounded-xl", data: { test_id: "name-field" } %>
+      <% resource.errors.full_messages_for(:name).each do |message| %>
+        <div class="text-xs text-red-700 font-bold">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
     
     <div class="mb-5 space-y-1">
-      <%= f.label :username, class: "font-bold" %>
-      <%= f.text_field :username, class: "w-full text-xl rounded-xl" %>
+      <%= f.label :username, class: "font-bold" do %>
+        Username<span class="text-red-700">*</span>
+      <% end %>
+      <%= f.text_field :username, class: "w-full text-xl rounded-xl", data: { test_id: "username-field" } %>
+      <% resource.errors.full_messages_for(:username).each do |message| %>
+        <div class="text-xs text-red-700 font-bold">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
     
     <div class="mb-5">
       <%= f.radio_button :gender, "male", checked: true, class: "mr-2" %>
       <%= f.label :gender_male, "Male", class: "font-bold mr-4" %>
-      <%= f.radio_button :gender, "female", class: "mr-2" %>
+      <%= f.radio_button :gender, "female", class: "mr-2", data: { test_id: "gender-radio-female" } %>
       <%= f.label :gender_female, "Female", class: "font-bold" %>
     </div>
     
     <div class="mb-5 space-y-1">
       <%= f.label :location, class: "font-bold" %>
-      <%= f.text_field :location, class: "w-full text-xl rounded-xl" %>
+      <%= f.text_field :location, class: "w-full text-xl rounded-xl", data: { test_id: "location-field" } %>
     </div>
     
     <div class="mb-5 space-y-1">
-      <%= f.label :password, class: "font-bold" %>
+      <%= f.label :password, class: "font-bold" do %>
+        Password<span class="text-red-700">*</span>
+      <% end %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "w-full text-xl rounded-xl" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "w-full text-xl rounded-xl", data: { test_id: "password-field" } %>
+      <% resource.errors.full_messages_for(:password).each do |message| %>
+        <div class="text-xs text-red-700 font-bold">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
     
     <div class="mb-9 space-y-1">
-      <%= f.label :password_confirmation, class: "font-bold" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full text-xl rounded-xl" %>
+      <%= f.label :password_confirmation, class: "font-bold" do %>
+        Password confirmation<span class="text-red-700">*</span>
+      <% end %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full text-xl rounded-xl", data: { test_id: "password-confirmation-field" } %>
+      <% resource.errors.full_messages_for(:password_confirmation).each do |message| %>
+        <div class="text-xs text-red-700 font-bold">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
     
     <div class="mb-5">
-      <%= f.submit "Sign up", class: "bg-amber-300 hover:bg-amber-400 w-full font-bold py-2.5 uppercase rounded-xl" %>
+      <%= f.submit "Sign up", class: "bg-amber-300 hover:bg-amber-400 w-full font-bold py-2.5 uppercase rounded-xl", data: { test_id: "submit-btn" } %>
     </div>
   <% end %>
     
