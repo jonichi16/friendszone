@@ -1,0 +1,24 @@
+<div class="max-w-4xl w-11/12 mx-auto">
+  <div class="flex items-center justify-between">
+    <div class="logo flex-1 text-2xl py-3 | sm:text-3xl sm:py-4">
+      <%= link_to "FriendsZone", root_path %>
+    </div>
+
+    <div class="block cursor-pointer | sm:hidden">
+      <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </div>
+    
+    <div class="hidden absolute p-2 right-0 top-14 max-w-xs w-7/12 h-screen text-center bg-amber-300 | sm:flex sm:static sm:w-fit sm:h-fit">
+      <% if user_signed_in? %>
+        <div class="font-bold py-2 px-3 rounded-md hover:bg-amber-400">
+          <%= link_to "@#{current_user.username}", edit_user_registration_path %>
+        </div>
+        <div class="font-bold py-2 px-3 rounded-md hover:bg-amber-400">
+          <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
