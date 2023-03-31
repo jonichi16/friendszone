@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: redirect("/users/sign_in")
 
   devise_for :users
+
+  resources :users, only: %i[index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
