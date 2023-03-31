@@ -5,4 +5,6 @@ RSpec.describe User do
   it { is_expected.to allow_value("example@example.com").for(:email) }
   it { is_expected.not_to allow_value("bademail").for(:email) }
   it { is_expected.to validate_presence_of(:name) }
+
+  it { is_expected.to have_many(:friends).dependent(:destroy) }
 end

@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates :username, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }
   validates :name, presence: true
 
+  has_many :friends, dependent: :destroy
+
   def login
     @login || username || email
   end
