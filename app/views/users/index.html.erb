@@ -1,3 +1,7 @@
-<% @users.each do |user| %>
-  <%= user.name %>
-<% end %>
+<div>
+  <div class="bg-white mx-auto py-5 mb-5 | sm:max-w-2xl">
+    <h2 class="font-bold text-center | sm:text-lg">People You May Know</h2>
+  </div>
+  
+  <%= render "users", users: @users %>
+</div>
