@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Profile" do
-  let!(:current_user) { create(:user) }
-  let!(:other_user) { create(:user) }
+  let!(:current_user) { create(:user, location: "manila") }
+  let!(:other_user) { create(:user, location: "manila") }
 
   before do
     sign_in current_user
@@ -76,6 +76,34 @@ RSpec.describe "Profile" do
       find(:test_id, "cancel-request-btn-user_#{other_user.id}").click
 
       expect(page).to have_content("Add Friend")
+    end
+  end
+
+  context "when current user visit his/her own profile" do
+    before do
+      other_user.friends.create(friend_id: current_user.id)
+    end
+
+    it "display the details section of the user" do
+      find(:test_id, "profile-link").click
+
+      expect(page).to have_content("Joined on #{current_user.created_at.strftime('%B %Y')}")
+      expect(page).to have_content("Followed by 1 person")
+      expect(page).to have_content("Manila")
+    end
+  end
+
+  context "when current user visit requested profile" do
+    before do
+      other_user.friends.create(friend_id: current_user.id)
+    end
+
+    it "display the details of other user" do
+      visit user_path(other_user)
+
+      expect(page).to have_content("Joined on #{current_user.created_at.strftime('%B %Y')}")
+      expect(page).to have_content("Followed by 0 people")
+      expect(page).to have_content("Manila")
     end
   end
 end

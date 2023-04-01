@@ -9,6 +9,8 @@ class Friend < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: :friend_id }
 
+  scope :followed_by, ->(user) { where("friend_id = ? AND status = ?", user.id, 1) }
+
   private
 
   def request_friend
