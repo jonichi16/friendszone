@@ -10,4 +10,22 @@ RSpec.describe Friend do
 
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:friend) }
+
+  context "when user add a friend" do
+    let!(:user) { create(:user) }
+    let!(:other_user) { create(:user) }
+
+    before do
+      user.friends.create(friend_id: other_user.id)
+    end
+
+    it "create a reciprocal friend" do
+      friendship = described_class.find_by(user_id: user.id)
+      reciprocal_friendship = described_class.find_by(user_id: other_user.id)
+
+      expect(friendship).not_to be_nil
+      expect(reciprocal_friendship).not_to be_nil
+      expect(reciprocal_friendship.status).to eq("pending")
+    end
+  end
 end

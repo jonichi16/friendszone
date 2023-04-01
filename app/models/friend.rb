@@ -2,5 +2,15 @@ class Friend < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User"
 
+  enum :status, { pending: 0, accepted: 1 }
+
+  after_create :request_friend
+
   validates :user_id, uniqueness: { scope: :friend_id }
+
+  private
+
+  def request_friend
+    Friend.create(user_id: friend_id, friend_id: user_id, status: 0)
+  end
 end
