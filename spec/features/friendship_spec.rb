@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Find Friends" do
+RSpec.describe "Friendship" do
   let!(:current_user) { create(:user, name: "Current User") }
   let!(:friend_user) { create(:user, name: "Friend User") }
   let!(:other_user) { create(:user, name: "Other User") }
@@ -21,6 +21,17 @@ RSpec.describe "Find Friends" do
       expect(page).to have_content(other_user.name)
       expect(page).not_to have_content(current_user.name)
       expect(page).not_to have_content(friend_user.name)
+    end
+  end
+
+  context "when user add a friend" do
+    it "removes the friend in the list" do
+      visit root_path
+
+      find(:test_id, "find-friends-link").click
+      find(:test_id, "add-friend-btn-user_#{other_user.id}").click
+
+      expect(page).not_to have_content(other_user.name)
     end
   end
 end
