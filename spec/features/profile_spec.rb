@@ -56,4 +56,26 @@ RSpec.describe "Profile" do
       expect(page).to have_content("Add Friend")
     end
   end
+
+  context "when current user visit requester user page" do
+    before do
+      other_user.friends.create(friend_id: current_user.id)
+    end
+
+    it "display a button to accept or delete request" do
+      visit user_path(other_user)
+
+      expect(page).to have_content("Accept Request")
+      expect(page).to have_content("Delete Request")
+
+      find(:test_id, "accept-request-btn-user_#{other_user.id}").click
+
+      expect(page).to have_content("Unfriend")
+      expect(page).to have_current_path(user_path(other_user))
+
+      find(:test_id, "cancel-request-btn-user_#{other_user.id}").click
+
+      expect(page).to have_content("Add Friend")
+    end
+  end
 end

@@ -9,6 +9,16 @@ class FriendsController < ApplicationController
     end
   end
 
+  def update
+    @friend = current_user.friends.find_by(friend_params)
+
+    if @friend.update(status: 1)
+      redirect_to user_path(params[:id])
+    else
+      render user_path(params[:id]), status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @friend = Friend.find_by(friend_id: params[:id])
     current_user.friends.destroy(@friend)
