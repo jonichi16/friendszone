@@ -9,6 +9,13 @@ class FriendsController < ApplicationController
     end
   end
 
+  def destroy
+    @friend = Friend.find_by(friend_id: params[:id])
+    current_user.friends.destroy(@friend)
+
+    redirect_to user_path(params[:id]), status: :see_other
+  end
+
   private
 
   def friend_params

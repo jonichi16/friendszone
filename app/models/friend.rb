@@ -5,6 +5,7 @@ class Friend < ApplicationRecord
   enum :status, { pending: 0, accepted: 1 }
 
   after_create :request_friend
+  after_destroy :delete_friend
 
   validates :user_id, uniqueness: { scope: :friend_id }
 
@@ -12,5 +13,10 @@ class Friend < ApplicationRecord
 
   def request_friend
     Friend.create(user_id: friend_id, friend_id: user_id, status: 0)
+  end
+
+  def delete_friend
+    @friend = Friend.where("user_id = ? AND friend_id = ?", friend_id, user_id)
+    friend.friends.destroy(@friend)
   end
 end

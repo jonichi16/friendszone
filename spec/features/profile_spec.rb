@@ -28,4 +28,32 @@ RSpec.describe "Profile" do
       expect(page).to have_content("Add Friend")
     end
   end
+
+  context "when current user visit requested user page" do
+    before do
+      current_user.friends.create(friend_id: other_user.id)
+    end
+
+    it "display a button to cancel request" do
+      visit user_path(other_user)
+
+      expect(page).to have_current_path(user_path(other_user))
+      expect(page).to have_content("Cancel Request")
+    end
+  end
+
+  context "when current user cancel the friend request" do
+    before do
+      current_user.friends.create(friend_id: other_user.id)
+    end
+
+    it "display a button to add a friend" do
+      visit user_path(other_user)
+
+      find(:test_id, "cancel-request-btn-user_#{other_user.id}").click
+
+      expect(page).not_to have_content("Cancel Request")
+      expect(page).to have_content("Add Friend")
+    end
+  end
 end
