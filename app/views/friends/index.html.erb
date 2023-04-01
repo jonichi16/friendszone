@@ -1,0 +1,12 @@
+<div class="bg-white mx-auto py-5 mb-5 | sm:max-w-2xl">
+  <h2 class="font-bold text-center | sm:text-lg">Friends List</h2>
+</div>
+
+<div class="grid grid-cols-1 gap-3 max-w-2xl w-11/12 mx-auto pb-5 | sm:grid-cols-2">
+  <% @friends.each do |friend| %>
+    <%= link_to user_path(friend.friend), class: "bg-white px-4 py-6 shadow-md rounded-md space-y-4" do  %>
+      <p class="font-bold text-center text-lg | sm:px-6"><%= friend.friend.name %></p>
+      <p class="text-slate-500 font-semibold text-center | sm:px-6"><%= friend.friend.location.titlecase %></p>
+    <% end %>
+  <% end %>
+</div>

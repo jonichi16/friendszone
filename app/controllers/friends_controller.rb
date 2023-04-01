@@ -1,4 +1,8 @@
 class FriendsController < ApplicationController
+  def index
+    @friends = Friend.includes(:friend).friends(params[:user_id])
+  end
+
   def create
     @friend = current_user.friends.build(friend_params)
 
