@@ -3,9 +3,9 @@ class FriendsController < ApplicationController
     @friend = current_user.friends.build(friend_params)
 
     if @friend.save
-      redirect_to users_path
+      redirect_to params[:target_url]
     else
-      render users_path, status: :unprocessable_entity
+      render params[:target_url], status: :unprocessable_entity
     end
   end
 
