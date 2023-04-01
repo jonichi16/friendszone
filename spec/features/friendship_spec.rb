@@ -32,6 +32,7 @@ RSpec.describe "Friendship" do
       find(:test_id, "add-friend-btn-user_#{other_user.id}").click
 
       expect(page).not_to have_content(other_user.name)
+      expect(page).to have_current_path(users_path)
     end
   end
 

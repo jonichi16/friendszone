@@ -37,6 +37,6 @@ class User < ApplicationRecord
   def self.people(current_user)
     @friends = current_user.friends.pluck(:friend_id)
     @excluded = @friends << current_user.id
-    @people = User.where.not(id: @excluded).order("random()").limit(20)
+    @people = User.where.not(id: @excluded).limit(20)
   end
 end

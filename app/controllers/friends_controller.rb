@@ -6,10 +6,13 @@ class FriendsController < ApplicationController
   def create
     @friend = current_user.friends.build(friend_params)
 
-    if @friend.save
-      redirect_to params[:target_url]
-    else
-      render params[:target_url], status: :unprocessable_entity
+    respond_to do |format|
+      if @friend.save
+        format.turbo_stream
+        format.html { redirect_to params[:target_url] }
+      else
+        render params[:target_url], status: :unprocessable_entity
+      end
     end
   end
 

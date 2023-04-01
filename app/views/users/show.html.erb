@@ -3,7 +3,7 @@
   <% if @user == current_user %>
     <%= render "edit_profile" %>
   <% else %>
-    <%= render "friendship_button", user: @user %>
+    <%= render "friendship_button", user: @user, target: "_top" %>
   <% end %>
   <%= render "friends", user: @user %>
 </div>

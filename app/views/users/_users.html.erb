@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 gap-3 max-w-2xl w-11/12 mx-auto pb-5 | sm:grid-cols-2">
+<div id="users" class="grid grid-cols-1 gap-3 max-w-2xl w-11/12 mx-auto pb-5 | sm:grid-cols-2">
   <% users.each do |user| %>
     <%= link_to user_path(user), class: "bg-white px-4 py-6 shadow-md rounded-md space-y-4", data: { test_id: dom_id(user) }, target: "_top" do %>
       <div class="font-bold text-center | sm:px-6">

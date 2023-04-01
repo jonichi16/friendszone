@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "users" do %>
+  <%= render "users/users", users: User.people(current_user) %>
+<% end %>
