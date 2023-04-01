@@ -33,4 +33,10 @@ class User < ApplicationRecord
       errors.add(:username, :invalid)
     end
   end
+
+  def self.people(current_user)
+    @friends = current_user.friends.pluck(:friend_id)
+    @excluded = @friends << current_user.id
+    @people = User.where.not(id: @excluded).order("random()").limit(20)
+  end
 end
