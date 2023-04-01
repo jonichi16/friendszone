@@ -1,10 +1,10 @@
 <div class="grid grid-cols-1 gap-3 max-w-2xl w-11/12 mx-auto pb-5 | sm:grid-cols-2">
   <% users.each do |user| %>
-    <div class="bg-white px-4 py-6 shadow-md rounded-md space-y-4">
+    <%= link_to user_path(user), class: "bg-white px-4 py-6 shadow-md rounded-md space-y-4", data: { test_id: dom_id(user) } do %>
       <div class="font-bold text-center | sm:px-6">
         <%= user.name %>
       </div>
       <%= button_to "Add Friend", friends_path(friend: { friend_id: user.id }), data: { test_id: "add-friend-btn-#{dom_id(user)}" }, class: "w-full py-2 rounded-full bg-slate-900 text-white text-sm font-bold hover:bg-slate-800" %>
-    </div>
+    <% end %>
   <% end %>
 </div>

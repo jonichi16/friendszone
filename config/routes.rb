@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: %i[index]
+  resources :users, only: %i[index show]
   resources :friends, only: %i[create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
