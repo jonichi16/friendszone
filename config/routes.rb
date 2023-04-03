@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show] do
     resources :friends, only: %i[index]
+    resources :notifications, only: %i[index]
   end
   resources :friends, only: %i[create update destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

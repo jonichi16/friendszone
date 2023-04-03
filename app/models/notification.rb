@@ -4,4 +4,8 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
 
   enum :status, { unseen: 0, seen: 1 }
+
+  def self.get_notifications(user)
+    includes(:sender).where(user_id: user).reverse_order.limit(20)
+  end
 end
