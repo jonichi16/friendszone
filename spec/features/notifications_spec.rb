@@ -38,4 +38,25 @@ RSpec.describe "Notifications" do
       expect(page).to have_content("Jane Doe accepted your friend request")
     end
   end
+
+  context "when current user click a friend request notification" do
+    it "redirects to the page of the request" do
+      friend = create(:friend, user: user_one, friend: current_user)
+      notif = Notification.find_by(user_id: current_user.id, sender_id: user_one.id)
+
+      visit root_path
+
+      expect(notif.status).to eq("unseen")
+
+      find(:test_id, "notifications-link").click
+
+      notif.reload
+
+      expect(notif.status).to eq("seen")
+
+      find(:test_id, "notif-source-link").click
+
+      expect(page).to have_current_path(user_path(user_one))
+    end
+  end
 end

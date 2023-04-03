@@ -3,13 +3,15 @@
 </div>
 
 <div class="max-w-2xl w-11/12 mx-auto pb-5 space-y-3">
-  <% @notifications.each do |notif| %> 
-    <div class="flex flex-col gap-y-4 bg-white px-4 py-6 shadow rounded-lg mb-3 font-bold | sm:flex-row sm:items-center">
-      <h3 class="flex-1"><%= notif_message(notif) %></h3>
-      <div class="text-xs">
-        <p><%= get_notif_date(notif) %></p>
-        <p><%= get_notif_time(notif) %></p>
+  <% @notifications.each do |notif| %>
+    <%= link_to get_path(notif), data: { test_id: "notif-source-link" } do %>
+      <div class="flex flex-col gap-y-4 bg-white px-4 py-6 shadow rounded-lg mb-3 font-bold | sm:flex-row sm:items-center">
+        <h3 class="flex-1"><%= notif_message(notif) %></h3>
+        <div class="text-xs">
+          <p><%= get_notif_date(notif) %></p>
+          <p><%= get_notif_time(notif) %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
