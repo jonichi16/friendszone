@@ -1,11 +1,13 @@
 class Friend < ApplicationRecord
+  after_create :request_friend, :send_friend_request_notification
+  after_update :send_accepted_request_notification
+  after_destroy :delete_friend
+
   belongs_to :user
   belongs_to :friend, class_name: "User"
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   enum :status, { pending: 0, accepted: 1 }
-
-  after_create :request_friend
-  after_destroy :delete_friend
 
   validates :user_id, uniqueness: { scope: :friend_id }
 
@@ -21,5 +23,13 @@ class Friend < ApplicationRecord
   def delete_friend
     @friend = Friend.where("user_id = ? AND friend_id = ?", friend_id, user_id)
     friend.friends.destroy(@friend)
+  end
+
+  def send_friend_request_notification
+    notifications.create!(user_id:, sender_id: friend_id) if pending?
+  end
+
+  def send_accepted_request_notification
+    notifications.create!(user_id: friend_id, sender_id: user_id) if accepted?
   end
 end

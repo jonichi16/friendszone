@@ -10,6 +10,7 @@ RSpec.describe Friend do
 
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:friend) }
+  it { is_expected.to have_many(:notifications).dependent(:destroy) }
 
   context "when user add a friend" do
     let!(:user) { create(:user) }

@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :friends, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   def login
     @login || username || email
