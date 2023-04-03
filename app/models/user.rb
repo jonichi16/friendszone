@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   has_many :friends, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   def login
     @login || username || email
