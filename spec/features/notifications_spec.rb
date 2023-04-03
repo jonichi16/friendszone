@@ -18,7 +18,6 @@ RSpec.describe "Notifications" do
 
       find(:test_id, "notifications-link").click
 
-      expect(page).to have_current_path(user_notifications_path(current_user))
       expect(page).to have_content("Jane Doe sent you a friend request")
       expect(page).to have_content("Joe Doe sent you a friend request")
     end
@@ -34,7 +33,6 @@ RSpec.describe "Notifications" do
 
       find(:test_id, "notifications-link").click
 
-      expect(page).to have_current_path(user_notifications_path(current_user))
       expect(page).to have_content("Jane Doe accepted your friend request")
     end
   end

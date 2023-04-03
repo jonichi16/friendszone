@@ -4,7 +4,7 @@
       <%= link_to "FriendsZone", root_path %>
     </div>
 
-    <%= link_to user_notifications_path(current_user), class: "relative block font-bold py-2 px-3 rounded-md mr-0.5 hover:bg-amber-400 ", data: { test_id: "notifications-link" } do %>
+    <%= link_to notifications_path, class: "relative block font-bold py-2 px-3 rounded-md mr-0.5 hover:bg-amber-400 ", data: { test_id: "notifications-link" } do %>
       <span class="absolute h-2.5 w-2.5 bg-blue-600 rounded-full top-2 right-3 outline outline-2 outline-amber-300 outline-offset-0 hidden"></span>
       <span class="sr-only">View notifications</span>
       <svg role="img" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">

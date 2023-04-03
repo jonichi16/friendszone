@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show] do
     resources :friends, only: %i[index]
-    resources :notifications, only: %i[index]
   end
+  resources :notifications, only: %i[index]
   resources :friends, only: %i[create update destroy]
   get "/update_notif/:id", to: "notifications#update_notif", as: :update_notif
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

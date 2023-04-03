@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.get_notifications(params[:user_id])
+    @notifications = Notification.get_notifications(current_user)
     update_unseen_notif(@notifications)
   end
 
