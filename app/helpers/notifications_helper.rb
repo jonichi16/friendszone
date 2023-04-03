@@ -8,13 +8,6 @@ module NotificationsHelper
     end
   end
 
-  def get_path(notif)
-    case notif.notifiable_type
-    when "Friend"
-      user_path(notif.sender)
-    end
-  end
-
   def get_notif_date(notif)
     notif.created_at.strftime("%b %d, %Y")
   end

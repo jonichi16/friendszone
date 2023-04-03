@@ -56,7 +56,10 @@ RSpec.describe "Notifications" do
 
       find(:test_id, "notif-source-link").click
 
+      notif.reload
+
       expect(page).to have_current_path(user_path(user_one))
+      expect(notif.status).to eq("reviewed")
     end
   end
 end
