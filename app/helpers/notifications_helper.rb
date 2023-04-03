@@ -15,4 +15,8 @@ module NotificationsHelper
   def get_notif_time(notif)
     notif.created_at.strftime("%I:%M %P")
   end
+
+  def seen_notifs
+    current_user.notifications.unseen.empty?
+  end
 end
