@@ -72,3 +72,7 @@ Layout/EmptyLinesAroundBlockBody:
 
 Rails/FilePath:
   Enabled: false
+
+Rails/Output:
+  Exclude:
+    - db/seeds.rb

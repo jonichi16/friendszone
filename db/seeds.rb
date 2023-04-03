@@ -6,9 +6,13 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Notification.delete_all
+Friend.delete_all
+User.delete_all
+
 def user_params(user_name, user_gender)
   {
-    username: Faker::Internet.username(specifier: 5..10),
+    username: Faker::Internet.unique.username(specifier: 5..10),
     email: Faker::Internet.unique.email,
     password: "password",
     name: user_name,
@@ -23,4 +27,6 @@ end
   gender = i <= 23 ? "female" : "male"
 
   User.create!(user_params(name, gender))
+
+  puts "User#{i} created!"
 end
