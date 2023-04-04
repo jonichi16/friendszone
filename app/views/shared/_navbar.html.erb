@@ -18,7 +18,7 @@
       </svg>
     </div>
       
-    <div class="hidden absolute p-2 right-0 top-14 max-w-sm w-7/12 h-screen text-center text-sm bg-amber-300 | sm:flex sm:static sm:w-fit sm:h-fit sm:text-base" data-navbar-target="menu">
+    <div class="hidden absolute p-2 right-0 top-14 max-w-sm w-7/12 h-screen text-center text-sm bg-amber-300 z-50 | sm:flex sm:static sm:w-fit sm:h-fit sm:text-base" data-navbar-target="menu">
       <% if user_signed_in? %>
         <%= link_to "Find Friends", users_path, class: "block font-bold py-2 px-3 rounded-md hover:bg-amber-400", data: { test_id: "find-friends-link" } %>
         <%= link_to "@#{current_user.username}", user_path(current_user), class: "block font-bold py-2 px-3 rounded-md hover:bg-amber-400", data: { test_id: "profile-link" } %>

@@ -1,5 +1,5 @@
 <%= form_with model: post, id: "new_post", data: { controller: "post" } do |form| %>
   <%= form.text_area :content, placeholder: "Write your thoughts here...", data: { test_id: "post-field", post_target: "postField", action: "post#checkIfEmpty" }, class: "block w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 | sm:py-1.5 sm:leading-6 mb-3 h-32" %>
 
-  <%= form.submit "Post", data: { test_id: "post-btn", post_target: "postBtn" }, class: "bg-slate-900 text-white w-full rounded-md py-2 font-bold uppercase hover:opacity-90 disabled:opacity-50 disabled:text-opacity-50" %>
+  <%= form.submit "Post", data: { test_id: "post-btn", post_target: "postBtn" }, class: "bg-slate-900 text-white w-full rounded-md py-2 font-bold uppercase hover:opacity-90 disabled:opacity-50 disabled:text-opacity-50", disabled: true %>
 <% end %>
