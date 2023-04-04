@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    # contains all posts
+    @posts = Post.posts(current_user)
   end
 
   def create

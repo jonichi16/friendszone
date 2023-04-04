@@ -1,0 +1,5 @@
+<div id=<%= "#{dom_id(post)}" %> class="bg-white shadow p-5">
+  <p class="font-bold"><%= link_to post.user.name, post.user %></p>
+  <p class="text-xs text-slate-500 font-semibold"><%= get_post_date(post) %></p>
+  <p class="mt-4"><%= simple_format(post.content) %></p>
+</div>

@@ -3,4 +3,9 @@ class Post < ApplicationRecord
   has_many :notifications, as: :notifiable, dependent: :destroy
 
   validates :content, presence: true
+
+  def self.posts(user)
+    posts_user = user.friends.pluck(:friend_id) << user.id
+    where(user_id: posts_user).limit(20)
+  end
 end

@@ -1,3 +1,7 @@
-<div class="bg-white mx-auto p-5 | sm:max-w-2xl">
+<div class="bg-white mx-auto p-5 mb-3 | sm:max-w-2xl">
   <%= render "form", post: Post.new %>
+</div>
+
+<div id="posts" class="max-w-2xl w-11/12 mx-auto space-y-3 pb-5">
+  <%= render @posts %>
 </div>
