@@ -6,6 +6,6 @@ class Notification < ApplicationRecord
   enum :status, { unseen: 0, seen: 1, reviewed: 2 }
 
   def self.get_notifications(user)
-    includes(:sender).where(user_id: user).reverse_order.limit(20)
+    includes(:sender, :notifiable).where(user_id: user).reverse_order.limit(20)
   end
 end
