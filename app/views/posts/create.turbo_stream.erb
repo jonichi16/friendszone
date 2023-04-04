@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{dom_id(Post.new)}" do  %>
+  <%= render "form", post: Post.new %>
+<% end %>
