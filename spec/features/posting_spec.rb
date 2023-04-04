@@ -31,4 +31,46 @@ RSpec.describe "Posting" do
       expect(page).not_to have_content("Awesome post!")
     end
   end
+
+  context "when current user visit his/her user page" do
+    it "display current user's posts only" do
+      create(:post, user:, content: "Test 1")
+      create(:post, user:, content: "Test 2")
+      create(:post, user: other_user, content: "Test 3")
+
+      visit user_path(user)
+
+      expect(page).to have_content("Test 1")
+      expect(page).to have_content("Test 2")
+      expect(page).not_to have_content("Test 3")
+    end
+  end
+
+  context "when current user visit friend's user page" do
+    it "display friend's posts only" do
+      create(:post, user: friend_user, content: "Test 1")
+      create(:post, user: friend_user, content: "Test 2")
+      create(:post, user:, content: "Test 3")
+
+      visit user_path(friend_user)
+
+      expect(page).to have_content("Test 1")
+      expect(page).to have_content("Test 2")
+      expect(page).not_to have_content("Test 3")
+    end
+  end
+
+  context "when current user visit non-friend's user page" do
+    it "display non-friend's posts only" do
+      create(:post, user: other_user, content: "Test 1")
+      create(:post, user: other_user, content: "Test 2")
+      create(:post, user:, content: "Test 3")
+
+      visit user_path(other_user)
+
+      expect(page).to have_content("Test 1")
+      expect(page).to have_content("Test 2")
+      expect(page).not_to have_content("Test 3")
+    end
+  end
 end
