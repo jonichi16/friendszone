@@ -9,4 +9,5 @@ RSpec.describe User do
   it { is_expected.to have_many(:friends).dependent(:destroy) }
   it { is_expected.to have_many(:notifications).dependent(:destroy) }
   it { is_expected.to have_many(:posts).dependent(:destroy) }
+  it { is_expected.to have_many(:comments).dependent(:destroy) }
 end
