@@ -1,0 +1,4 @@
+<div id=<%= "#{dom_id(comment)}" %>, class="flex gap-x-4 mt-3">
+  <%= link_to comment.user.name, user_path(comment.user), target: "_top", class: "block font-bold" %>
+  <p><%= comment.content %></p>
+</div>

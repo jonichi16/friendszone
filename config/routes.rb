@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :friends, only: %i[index]
   end
   resources :posts, only: %i[create] do
-    resources :comments, only: %i[new create]
+    resources :comments, only: %i[index new create]
   end
   resources :notifications, only: %i[index]
   resources :friends, only: %i[create update destroy]

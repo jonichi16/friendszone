@@ -4,9 +4,10 @@
   <p class="mt-4"><%= simple_format(post.content) %></p>
 
   <div class="flex mt-3">
-    <%= link_to "Comment", new_post_comment_path(post), data: { test_id: "#{dom_id(post)}_comments", turbo_frame: "#{dom_id(post)}_comments" }, class: "block bg-slate-900 text-white w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
+    <%= link_to "Comment", new_post_comment_path(post), data: { test_id: "show-#{dom_id(post)}-comments", turbo_frame: "show-#{dom_id(post)}-comments" }, class: "block bg-slate-900 text-white w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
   </div>
 
-  <%= turbo_frame_tag "#{dom_id(post)}_comments" do %>
+  <%= turbo_frame_tag "show-#{dom_id(post)}-comments" do %>
+    <div id="post-comments"></div>
   <% end %>
 </div>
