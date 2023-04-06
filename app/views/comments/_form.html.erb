@@ -1,8 +1,9 @@
 <%= turbo_frame_tag "show-#{dom_id(post)}-comments" do %>
-  <%= form_with model: comment, url: post_comments_path(post), class: "flex items-start gap-x-2 mt-3" do |form| %>
-    <%= form.text_area :content, placeholder: "Write a comment...", autofocus: true, data: { test_id: "#{dom_id(post)}-comment-field" }, class: "w-full resize-none rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 | sm:py-1.5 sm:leading-6" %>
+  <%= form_with model: comment, url: post_comments_path(post), class: "relative flex items-start gap-x-2 mt-3" do |form| %>
+    <%= form.text_area :content, placeholder: "Write a comment...", autofocus: true, data: { test_id: "#{dom_id(post)}-comment-field" }, class: "w-full h-10 resize-none rounded-md pr-20 border-0 shadow-sm ring-1 ring-inset ring-gray-500 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  | sm:py-1.5" do %>
+    <% end %>
     
-    <%= form.submit "Post", data: { test_id: "#{dom_id(post)}-comment-btn", turbo_target: "_top" }, class: "font-bold cursor-pointer" %>
+    <%= form.submit "Post", data: { test_id: "#{dom_id(post)}-comment-btn", turbo_target: "_top" }, class: "absolute right-0 h-10 px-4 bg-slate-900 text-white font-bold rounded-md hover:opacity-90 cursor-pointer" %>
   <% end %>
 
   <div id=<%= "#{dom_id(post)}-comments" %>>
