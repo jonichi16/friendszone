@@ -1,8 +1,12 @@
 module NotificationsHelper
   def notif_message(notif)
-    case notif.notifiable.status
-    when "accepted"
+    notif_type = notif.notifiable_type
+    notifiable = notif.notifiable
+
+    if notif_type == "Friend" && notifiable.status == "accepted"
       "#{notif.sender.name} accepted your friend request"
+    elsif notif_type == "Comment"
+      "#{notif.sender.name} commented on your post"
     else
       "#{notif.sender.name} sent you a friend request"
     end

@@ -60,4 +60,32 @@ RSpec.describe "Notifications" do
       expect(notif.status).to eq("reviewed")
     end
   end
+
+  context "when a user comment on current user's post" do
+    it "received a comment notification" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:comment, user: user_one, post:, content: "A comment")
+
+      visit root_path
+
+      find(:test_id, "notifications-link").click
+
+      expect(page).to have_content("Jane Doe commented on your post")
+    end
+  end
+
+  context "when current user comment on his/her post" do
+    it "will not send a notification" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:comment, user: current_user, post:, content: "A comment")
+      create(:comment, user: user_one, post:, content: "My comment")
+
+      visit root_path
+
+      find(:test_id, "notifications-link").click
+
+      expect(page).to have_content("Jane Doe commented on your post")
+      expect(page).not_to have_content("John Doe commented on your post")
+    end
+  end
 end

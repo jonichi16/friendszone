@@ -40,4 +40,16 @@ RSpec.describe Notification do
       expect(accept_request.notifiable.user).to eq(other_user)
     end
   end
+
+  context "when a user comment to a post" do
+    it "send a comment notification" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:comment, user: other_user, post:, content: "A comment")
+
+      comment_notif = described_class.find_by(user_id: current_user.id)
+
+      expect(comment_notif).not_to be_nil
+      expect(comment_notif.user.name).to eq(current_user.name)
+    end
+  end
 end
