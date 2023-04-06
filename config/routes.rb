@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show] do
     resources :friends, only: %i[index]
   end
-  resources :posts, only: %i[create] do
+  resources :posts, only: %i[show create] do
     resources :comments, only: %i[index new create]
   end
   resources :notifications, only: %i[index]

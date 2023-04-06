@@ -52,7 +52,7 @@ RSpec.describe "Notifications" do
 
       expect(notif.status).to eq("seen")
 
-      find(:test_id, "notif-source-link").click
+      find(:test_id, "notification_#{notif.id}").click
 
       notif.reload
 
@@ -86,6 +86,21 @@ RSpec.describe "Notifications" do
 
       expect(page).to have_content("Jane Doe commented on your post")
       expect(page).not_to have_content("John Doe commented on your post")
+    end
+  end
+
+  context "when user clicked a comment notif" do
+    it "will redirect to the post page" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:comment, user: user_one, post:, content: "A comment")
+      notif = Notification.find_by(user_id: current_user.id)
+
+      visit notifications_path
+
+      find(:test_id, "notification_#{notif.id}").click
+
+      expect(page).to have_current_path(post_path(post))
+      expect(page).to have_content("A post")
     end
   end
 end

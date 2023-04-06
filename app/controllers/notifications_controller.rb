@@ -25,6 +25,8 @@ class NotificationsController < ApplicationController
     case notif.notifiable_type
     when "Friend"
       user_path(notif.sender)
+    else
+      post_path(notif.notifiable.post)
     end
   end
 end
