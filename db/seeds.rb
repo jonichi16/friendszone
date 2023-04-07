@@ -8,6 +8,9 @@
 
 Notification.delete_all
 Friend.delete_all
+Comment.delete_all
+Like.delete_all
+Post.delete_all
 User.delete_all
 
 def user_params(user_name, user_gender)
