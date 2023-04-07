@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{dom_id(@post)}-likes-counter" do  %>
+  <%= render "like_counter", post: @post %>
+<% end %>
