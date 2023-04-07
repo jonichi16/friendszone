@@ -7,6 +7,8 @@ module NotificationsHelper
       "#{notif.sender.name} accepted your friend request"
     elsif notif_type == "Comment"
       "#{notif.sender.name} commented on your post"
+    elsif notif_type == "Like"
+      "#{notif.sender.name} liked your post"
     else
       "#{notif.sender.name} sent you a friend request"
     end

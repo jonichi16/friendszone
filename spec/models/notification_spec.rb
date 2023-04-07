@@ -52,4 +52,16 @@ RSpec.describe Notification do
       expect(comment_notif.user.name).to eq(current_user.name)
     end
   end
+
+  context "when a user liked a post" do
+    it "send a like notification" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:like, user: other_user, post:)
+
+      like_notif = described_class.find_by(user_id: current_user.id)
+
+      expect(like_notif).not_to be_nil
+      expect(like_notif.user.name).to eq(current_user.name)
+    end
+  end
 end

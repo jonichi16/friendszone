@@ -103,4 +103,47 @@ RSpec.describe "Notifications" do
       expect(page).to have_content("A post")
     end
   end
+
+  context "when a user liked on current user's post" do
+    it "received a comment notification" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:like, user: user_one, post:)
+
+      visit root_path
+
+      find(:test_id, "notifications-link").click
+
+      expect(page).to have_content("Jane Doe liked your post")
+    end
+  end
+
+  context "when current user liked on his/her post" do
+    it "will not send a notification" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:like, user: current_user, post:)
+      create(:like, user: user_one, post:)
+
+      visit root_path
+
+      find(:test_id, "notifications-link").click
+
+      expect(page).to have_content("Jane Doe liked your post")
+      expect(page).not_to have_content("John Doe liked your post")
+    end
+  end
+
+  context "when user clicked a like notif" do
+    it "will redirect to the post page" do
+      post = create(:post, user: current_user, content: "A post")
+      create(:like, user: user_one, post:)
+      notif = Notification.find_by(user_id: current_user.id)
+
+      visit notifications_path
+
+      find(:test_id, "notification_#{notif.id}").click
+
+      expect(page).to have_current_path(post_path(post))
+      expect(page).to have_content("A post")
+    end
+  end
 end
