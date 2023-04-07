@@ -3,8 +3,9 @@
   <p class="text-xs text-slate-500 font-semibold"><%= get_post_date(post) %></p>
   <p class="mt-4"><%= simple_format(post.content) %></p>
 
-  <div class="flex mt-3">
+  <div class="flex mt-3 gap-x-2">
     <%= render "likes/like_counter", post: post %>
+    <%= render "comments/comment_counter", post: post %>
   </div>
 
   <div class="grid grid-cols-2 gap-x-2 text-sm mt-1 | sm:text-base">
