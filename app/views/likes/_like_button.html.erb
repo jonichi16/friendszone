@@ -1,1 +1,7 @@
-<%= button_to "Like", post_likes_path(post), data: { test_id: "#{dom_id(post)}-like-btn" }, class: "bg-slate-900 text-white w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
+<div id=<%= "#{dom_id(post)}-like-btn" %>>
+  <% if liked(current_user, post) %>
+    <%= link_to "Like", post_like_path(post_id: post.id, method: :delete, id: like_id(current_user, post)), data: { test_id: "#{dom_id(post)}-dislike-btn", turbo_method: :delete }, class: "block bg-amber-300 text-slate-900 w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
+  <% else %>
+    <%= button_to "Like", post_likes_path(post), data: { test_id: "#{dom_id(post)}-like-btn" }, class: "bg-slate-900 text-white w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
+  <% end %>
+</div>
