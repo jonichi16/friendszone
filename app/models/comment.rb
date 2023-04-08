@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   after_create :send_comment_notification
 
   belongs_to :user
-  belongs_to :post
+  belongs_to :post, counter_cache: true
   has_many :notifications, as: :notifiable, dependent: :destroy
 
   validates :content, presence: true

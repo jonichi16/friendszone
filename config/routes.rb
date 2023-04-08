@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   end
   resources :posts, only: %i[show create] do
     resources :comments, only: %i[index new create]
-    resources :likes, only: %i[create destroy]
+    resources :likes, only: %i[create]
+    delete "/dislike", to: "likes#dislike", as: :dislike
   end
   resources :notifications, only: %i[index]
   resources :friends, only: %i[create update destroy]

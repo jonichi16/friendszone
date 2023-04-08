@@ -1,7 +1,8 @@
 class NotificationsController < ApplicationController
   def index
     @notifications = Notification.get_notifications(current_user)
-    update_unseen_notif(@notifications)
+    @notif_to_update = Notification.udpate_notifications(current_user)
+    update_unseen_notif(@notif_to_update) unless @notif_to_update.unseen.empty?
   end
 
   def update_notif

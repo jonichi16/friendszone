@@ -7,6 +7,6 @@ class Post < ApplicationRecord
 
   def self.posts(user)
     posts_user = user.friends.pluck(:friend_id) << user.id
-    where(user_id: posts_user).includes(:user).order(created_at: :desc).limit(20)
+    where(user_id: posts_user).includes(:user, :likes).order(created_at: :desc).limit(20)
   end
 end

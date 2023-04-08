@@ -4,7 +4,7 @@ module UsersHelper
   end
 
   def friends_count(user)
-    pluralize(Friend.followed_by(user).count, "person")
+    pluralize(Friend.followed_by(user).size, "person")
   end
 
   def get_location(user)

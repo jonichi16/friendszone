@@ -11,9 +11,9 @@ class LikesController < ApplicationController
     end
   end
 
-  def destroy
+  def dislike
     @post = Post.find(params[:post_id])
-    @like = Like.find(params[:id])
+    @like = @post.likes.find_by(user_id: current_user.id)
     @like.destroy
 
     respond_to do |format|

@@ -3,14 +3,42 @@
   <p class="text-xs text-slate-500 font-semibold"><%= get_post_date(post) %></p>
   <p class="mt-4"><%= simple_format(post.content) %></p>
 
+  <%# Likes and Comments counters %>
   <div class="flex mt-3 gap-x-2">
-    <%= render "likes/like_counter", post: post %>
-    <%= render "comments/comment_counter", post: post %>
+    <div id=<%= "#{dom_id(post)}-likes-counter" %>  class="flex items-center gap-x-2">
+      <% if liked(current_user, post) %>
+        <span class="sr-only">Like count</span>
+        <svg role="img" height="20" viewBox="0 96 960 960" width="20">
+          <path d="M721 936H254V424l278-288 33 26q11 8 14.5 18t3.5 23v10l-45 211h322q23 0 41.5 18.5T920 484v82q0 11-2.5 25.5T910 617L794 885q-9 21-29.5 36T721 936ZM194 424v512H80V424h114Z"/>
+        </svg>
+        <p data-test-id=<%= "#{dom_id(post)}-likes-counter" %>><%= post.likes.size %></p>
+      <% else %>
+        <span class="sr-only">Like count</span>
+        <svg role="img" height="20" viewBox="0 96 960 960" width="20">
+          <path d="M716 936H272V424l278-288 39 31q6 5 9 14t3 22v10l-45 211h299q24 0 42 18t18 42v81.839q0 7.161 1.5 14.661T915 595L789 885q-8.878 21.25-29.595 36.125Q738.689 936 716 936Zm-384-60h397l126-299v-93H482l53-249-203 214v427Zm0-427v427-427Zm-60-25v60H139v392h133v60H79V424h193Z"/>
+        </svg>
+        <p data-test-id=<%= "#{dom_id(post)}-likes-counter" %>><%= post.likes.size %></p>
+      <% end %>
+    </div>
+    <div id=<%= "#{dom_id(post)}-comments-counter" %>  class="flex items-center gap-x-2">
+      <span class="sr-only">Comment count</span>
+      <svg role="img" height="20" viewBox="0 96 960 960" width="20">
+        <path d="M80 976V236q0-23 18-41.5t42-18.5h680q23 0 41.5 18.5T880 236v520q0 23-18.5 41.5T820 816H240L80 976Zm60-145 75-75h605V236H140v595Zm0-595v595-595Z"/>
+      </svg>
+      <p data-test-id=<%= "#{dom_id(post)}-comments-counter" %>><%= post.comments.size %></p>
+    </div>
   </div>
 
+  <%# Likes and Comments buttons %>
   <div class="grid grid-cols-2 gap-x-2 text-sm mt-1 | sm:text-base">
-    <%= render "likes/like_button", post: post %>
-    <%= render "comments/comment_button", post: post %>
+    <div id=<%= "#{dom_id(post)}-like-btn" %>>
+      <% if liked(current_user, post) %>
+        <%= link_to "Like", post_dislike_path(post), data: { test_id: "#{dom_id(post)}-dislike-btn", turbo_method: :delete }, class: "block bg-amber-300 text-slate-900 w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
+      <% else %>
+        <%= button_to "Like", post_likes_path(post), data: { test_id: "#{dom_id(post)}-like-btn" }, class: "bg-slate-900 text-white w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
+      <% end %>
+    </div>
+    <%= link_to "Comment", new_post_comment_path(post), data: { test_id: "show-#{dom_id(post)}-comments", turbo_frame: "show-#{dom_id(post)}-comments" }, class: "block bg-slate-900 text-white w-full rounded-md py-1 text-center font-bold hover:opacity-90" %>
   </div>
 
   <%= turbo_frame_tag "show-#{dom_id(post)}-comments" do %>

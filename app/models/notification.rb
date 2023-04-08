@@ -8,4 +8,8 @@ class Notification < ApplicationRecord
   def self.get_notifications(user)
     includes(:sender, :notifiable).where(user_id: user).reverse_order.limit(20)
   end
+
+  def self.udpate_notifications(user)
+    includes(:sender, :notifiable).where(user_id: user)
+  end
 end

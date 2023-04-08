@@ -5,6 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts.reverse_order
+    @posts = @user.posts.includes(:likes).reverse_order
   end
 end
