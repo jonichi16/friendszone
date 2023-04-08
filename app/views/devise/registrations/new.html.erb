@@ -1,4 +1,4 @@
-<div class="max-w-sm w-11/12 mx-auto pt-16">
+<div class="max-w-sm w-11/12 mx-auto pt-10">
   <h2 class="font-black text-4xl text-center mb-8">Sign up</h2>
     
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -66,7 +66,7 @@
       <% end %>
     </div>
     
-    <div class="mb-9 space-y-1">
+    <div class="mb-7 space-y-1">
       <%= f.label :password_confirmation, class: "font-bold" do %>
         Password confirmation<span class="text-red-700">*</span>
       <% end %>
@@ -78,10 +78,14 @@
       <% end %>
     </div>
     
-    <div class="mb-5">
+    <div class="mb-3">
       <%= f.submit "Sign up", class: "bg-amber-300 hover:bg-amber-400 w-full font-bold py-2.5 uppercase rounded-xl", data: { test_id: "submit-btn" } %>
     </div>
   <% end %>
+
+  <%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, data: { turbo: false }, class: "bg-blue-700 hover:bg-blue-800 w-full mb-7 font-bold py-2.5 text-white text-base uppercase rounded-xl" %>
     
-  <%= render "devise/shared/links" %>
+  <div class="text-center">
+    Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "font-bold italic text-blue-700", data: { test_id: "login-link" } %>
+  </div>
 </div>
