@@ -50,6 +50,9 @@ gem "bootsnap", require: false
 
 gem "devise"
 gem "faker"
+gem "figaro"
+gem "omniauth-facebook"
+gem "omniauth-rails_csrf_protection"
 gem "tailwindcss-rails", "~> 2.0"
 
 group :test do
