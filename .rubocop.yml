@@ -58,6 +58,9 @@ Metrics/BlockLength:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/FetchEnvVar:
+  Enabled: false
+
 Style/NumericLiterals:
   Exclude:
     - db/schema.rb
@@ -76,3 +79,6 @@ Rails/FilePath:
 Rails/Output:
   Exclude:
     - db/seeds.rb
+
+Rails/BulkChangeTable:
+  Enabled: false
