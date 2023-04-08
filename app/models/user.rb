@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
   attr_writer :login
 
@@ -42,5 +43,24 @@ class User < ApplicationRecord
     @friends = current_user.friends.pluck(:friend_id)
     @excluded = @friends << current_user.id
     @people = User.where.not(id: @excluded).limit(20)
+  end
+
+  def self.from_omniauth(auth)
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.email = auth.info.email
+      user.username = username_generator(auth.info.name)
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
+    end
+  end
+
+  def self.username_generator(first_name)
+    uniqname = first_name.downcase.downcase.tr(" ", "_")
+    num = 1
+    until User.find_by(username: uniqname).nil?
+      uniqname << "-#{num}"
+      num += 1
+    end
+    uniqname
   end
 end

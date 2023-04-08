@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   end
   root to: redirect("/users/sign_in")
 
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: "users/sessions",
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
 
   resources :users, only: %i[index show] do
     resources :friends, only: %i[index]
