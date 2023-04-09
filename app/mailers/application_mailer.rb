@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "support@friendszone.com"
+  default from: "friendszoneconnect@gmail.com"
   layout "mailer"
 end

@@ -1,6 +1,4 @@
 class UserMailer < ApplicationMailer
-  default from: "registrations@friendszone.com"
-
   def welcome_mailer(user)
     @user = user
 
