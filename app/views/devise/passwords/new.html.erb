@@ -2,11 +2,15 @@
   <h2 class="text-3xl text-center mb-8">Reset Your Password</h2>
   
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
   
     <div class="mb-5">
       <p class="mb-9">To reset your password, please enter your email address. You'll receive an email with a link to create a new password.</p>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter your email", class: "w-full text-xl rounded-xl" %>
+      <% resource.errors.full_messages_for(:email).each do |message| %>
+        <div class="text-xs text-red-700 font-bold">
+          <%= message %>
+        </div>
+      <% end %>
     </div>
   
     <div class="mb-5">
