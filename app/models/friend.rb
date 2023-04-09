@@ -1,7 +1,6 @@
 class Friend < ApplicationRecord
   after_create :request_friend, :send_friend_request_notification
   after_update :send_accepted_request_notification
-  after_destroy :delete_friend
 
   belongs_to :user
   belongs_to :friend, class_name: "User"
@@ -18,11 +17,6 @@ class Friend < ApplicationRecord
 
   def request_friend
     Friend.create(user_id: friend_id, friend_id: user_id, status: 0)
-  end
-
-  def delete_friend
-    @friend = Friend.where("user_id = ? AND friend_id = ?", friend_id, user_id)
-    friend.friends.destroy(@friend)
   end
 
   def send_friend_request_notification

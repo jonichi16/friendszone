@@ -29,23 +29,4 @@ RSpec.describe Friend do
       expect(reciprocal_friendship.status).to eq("pending")
     end
   end
-
-  context "when user cancel a friend request" do
-    let!(:user) { create(:user) }
-    let!(:other_user) { create(:user) }
-
-    before do
-      user.friends.create(friend_id: other_user.id)
-    end
-
-    it "destroy the reciprocal friend" do
-      friendship = described_class.find_by(user_id: user.id)
-      reciprocal_friendship = described_class.find_by(user_id: other_user.id)
-
-      user.friends.destroy(friendship)
-
-      expect(user.friends).to be_empty
-      expect(other_user.friends).to be_empty
-    end
-  end
 end

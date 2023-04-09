@@ -1,4 +1,6 @@
 class FriendsController < ApplicationController
+  before_action :set_friend, only: %i[destroy]
+
   def index
     @friends = Friend.includes(:friend).friends(params[:user_id])
   end
@@ -27,8 +29,8 @@ class FriendsController < ApplicationController
   end
 
   def destroy
-    @friend = Friend.find_by(friend_id: params[:id])
-    current_user.friends.destroy(@friend)
+    delete_friend(current_user, @friend)
+    delete_friend(@friend, current_user)
 
     redirect_to user_path(params[:id]), status: :see_other
   end
@@ -37,5 +39,14 @@ class FriendsController < ApplicationController
 
   def friend_params
     params.require(:friend).permit(:friend_id)
+  end
+
+  def set_friend
+    @friend = User.find(params[:id])
+  end
+
+  def delete_friend(user, friend)
+    friendship = user.friends.find_by(friend_id: friend.id)
+    user.friends.destroy(friendship) if friendship
   end
 end
