@@ -35,24 +35,26 @@
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
   
-    <div class="mb-5 space-y-l">
-      <%= f.label :password, class: "font-bold" %> <i class="text-xs">(leave blank if you don't want to change it)</i>
-      <%= f.password_field :password, autocomplete: "new-password", class: "w-full text-xl rounded-xl" %>
-      <% if @minimum_password_length %>
-        
-        <em class="text-xs"><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-  
-    <div class="mb-5 space-y-l">
-      <%= f.label :password_confirmation, class: "font-bold" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full text-xl rounded-xl" %>
-    </div>
-  
-    <div class="mb-9 space-y-l">
-      <%= f.label :current_password, class: "font-bold" %> <i class="text-xs">(confirm changes with current password)</i>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full text-xl rounded-xl" %>
-    </div>
+      <div class="mb-5 space-y-l">
+        <%= f.label :password, class: "font-bold" %> <i class="text-xs">(leave blank if you don't want to change it)</i>
+        <%= f.password_field :password, autocomplete: "new-password", class: "w-full text-xl rounded-xl" %>
+        <% if @minimum_password_length %>
+          
+          <em class="text-xs"><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+    
+      <div class="mb-5 space-y-l">
+        <%= f.label :password_confirmation, class: "font-bold" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full text-xl rounded-xl" %>
+      </div>
+    
+    <% if f.object.encrypted_password.present? %>
+      <div class="mb-9 space-y-l">
+        <%= f.label :current_password, class: "font-bold" %> <i class="text-xs">(confirm changes with current password)</i>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full text-xl rounded-xl" %>
+      </div>
+    <% end %>
   
     <div class="mb-5">
       <%= f.submit "Update", class: "bg-amber-300 hover:bg-amber-400 w-full font-bold py-2.5 uppercase rounded-xl" %>

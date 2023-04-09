@@ -49,7 +49,6 @@ class User < ApplicationRecord
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.email = auth.info.email
       user.username = username_generator(auth.info.name)
-      user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
     end
   end
@@ -62,5 +61,17 @@ class User < ApplicationRecord
       num += 1
     end
     uniqname
+  end
+
+  def password_required?
+    super && provider.blank?
+  end
+
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update(params, *options)
+    else
+      super
+    end
   end
 end
