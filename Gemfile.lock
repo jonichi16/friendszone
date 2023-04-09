@@ -126,6 +126,10 @@ GEM
       activesupport (>= 5.0.0)
     json (2.6.3)
     jwt (2.7.0)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -327,6 +331,7 @@ DEPENDENCIES
   figaro
   importmap-rails
   jbuilder
+  letter_opener
   omniauth-facebook
   omniauth-rails_csrf_protection
   pg (~> 1.1)
