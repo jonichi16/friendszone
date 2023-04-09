@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Friends Zone</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -17,14 +17,15 @@
 
   <body>
     <% if current_user %>
-      <nav class="bg-amber-300 relative">
-          <%= render "shared/navbar" %>
+      <nav class="bg-amber-300 fixed h-14 w-full z-50 | sm:h-16">
+          <div class="relative"><%= render "shared/navbar" %></div>
       </nav>
     <% end %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+    <main class="<%= "pt-14 | sm:pt-16" if current_user %>">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
   </body>
 </html>
