@@ -22,9 +22,15 @@
       </nav>
     <% end %>
 
-    <main class="<%= "pt-14 | sm:pt-16" if current_user %>">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <main class="relative <%= "pt-14 | sm:pt-16" if current_user %>">
+      <div class="transition-opacity duration-500 ease-in" data-controller="flash" data-flash-target="notif">
+        <% if notice.present? %>
+          <p class="notice absolute top-16 left-0 right-0 mx-auto w-11/12 py-1 mt-3 bg-green-100 border border-green-600 font-bold text-green-700 text-center | md:w-7/12 sm:mt-2"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p class="alert absolute top-16 left-0 right-0 mx-auto w-11/12 py-1 mt-3 bg-orange-100 border border-orange-600 font-bold text-orange-700 text-center | md:w-7/12 sm:mt-2"><%= alert %></p>
+        <% end %>
+      </div>
       <%= yield %>
     </main>
   </body>
