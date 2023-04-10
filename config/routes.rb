@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[index]
   resources :friends, only: %i[create update destroy]
   get "/update_notif/:id", to: "notifications#update_notif", as: :update_notif
+
+  get "/healthcheck", to: proc { [200, {}, ["success"]] }
 end
