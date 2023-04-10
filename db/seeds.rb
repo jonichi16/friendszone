@@ -6,13 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Notification.delete_all
-Friend.delete_all
-Comment.delete_all
-Like.delete_all
-Post.delete_all
-User.delete_all
-
 def user_params(user_name, user_gender)
   date = Faker::Time.between(from: 1.year.ago, to: Time.zone.now)
 
@@ -44,17 +37,7 @@ def content(num)
 end
 
 users = []
-50.times do |i|
-  first_name = i <= 23 ? Faker::Name.female_first_name : Faker::Name.male_first_name
-  name = "#{first_name} #{Faker::Name.last_name}"
-  gender = i <= 23 ? "female" : "male"
-
-  users << User.create!(user_params(name, gender))
-
-  puts "User#{i + 1} created!"
-end
-
-sample_user = User.create!(
+sample_user = User.create(
   username: "sampleuser",
   email: "sample@user.com",
   password: "password",
@@ -63,8 +46,17 @@ sample_user = User.create!(
   location: "Sample City",
   created_at: Faker::Time.between(from: 1.year.ago, to: Time.zone.now)
 )
-
 users << sample_user
+
+50.times do |i|
+  first_name = i <= 23 ? Faker::Name.female_first_name : Faker::Name.male_first_name
+  name = "#{first_name} #{Faker::Name.last_name}"
+  gender = i <= 23 ? "female" : "male"
+
+  users << User.create(user_params(name, gender))
+
+  puts "User#{i + 1} created!"
+end
 
 users.each do |user|
   rand(users.length).times do |i|
@@ -82,7 +74,7 @@ posts = []
   user = users[rand(users.length)]
   date = Faker::Time.between(from: user.created_at, to: Time.zone.now)
 
-  posts << Post.create!(
+  posts << Post.create(
     user_id: user.id,
     content: content(i),
     created_at: date,
@@ -95,7 +87,7 @@ end
 posts.each do |post|
   rand(10).times do |i|
     date = Faker::Time.between(from: post.created_at, to: Time.zone.now)
-    Comment.create!(
+    Comment.create(
       user_id: users[rand(users.length)].id,
       post_id: post.id,
       content: Faker::Quote.famous_last_words,
