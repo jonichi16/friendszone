@@ -2,11 +2,11 @@
 
 A Facebook-clone built with Ruby on Rails. This is the final project for Ruby on Rails course in [TheOdinProject](https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project). This app will have the core features of Facebook - users, profiles, friends, posting, likes, comments, notifications.
 
-You can log-in to [Live Preview](https://friendszone.up.railway.app/) using this account:
+You can sign-up to [Live Preview](https://friendszone.up.railway.app/) or log-in using this account:
 
-- username: sampleuser
+- username: `sampleuser`
 - email: `sample@user.com`
-- password: password
+- password: `password`
 
 # Features
 
