@@ -71,4 +71,4 @@ You can sign-up to [Live Preview](https://friendszone.up.railway.app/) or log-in
 - Add more details to the users, e.g. birthday
 - Allow user to upload a profile photo
 - Allow user to post an image
-- Implement mailer in production
+- ~~Implement mailer in production~~
