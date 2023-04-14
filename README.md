@@ -8,7 +8,7 @@ You can sign-up to [Live Preview](https://friendszone.up.railway.app/) or log-in
 - email: `sample@user.com`
 - password: `password`
 
-# Features
+## Features
 
 - User
 
@@ -44,7 +44,7 @@ You can sign-up to [Live Preview](https://friendszone.up.railway.app/) or log-in
 
   - a polymorphic association was used for this so friends, likes, comments can have notifications.
 
-# Testing
+## Testing
 
 - used [rspec-rails](https://github.com/rspec/rspec-rails), [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails), [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) and capybara for testing
 
@@ -53,7 +53,7 @@ You can sign-up to [Live Preview](https://friendszone.up.railway.app/) or log-in
   - features - for integration
   - request - for response and redirect
 
-# Other gem used
+## Other gem used
 
 - [faker](https://github.com/faker-ruby/faker) - to populate database
 
@@ -65,7 +65,7 @@ You can sign-up to [Live Preview](https://friendszone.up.railway.app/) or log-in
 
 - [rubocop](https://github.com/rubocop/rubocop), [rubocop-performance](https://github.com/rubocop/rubocop-performance), [rubocop-rails](https://github.com/rubocop/rubocop-rails), [rubocop-rspec](https://github.com/rubocop/rubocop-rspec) - as linter
 
-# Future Improvements
+## Future Improvements
 
 - Facebook login in production
 - Add more details to the users, e.g. birthday
