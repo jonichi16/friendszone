@@ -68,7 +68,7 @@ You can sign-up to [Live Preview](https://friendszone.up.railway.app/) or log-in
 ## Future Improvements
 
 - Facebook login in production
-- Add more details to the users, e.g. birthday
 - Allow user to upload a profile photo
 - Allow user to post an image
+- ~~Add icons to user page details section~~
 - ~~Implement mailer in production~~
