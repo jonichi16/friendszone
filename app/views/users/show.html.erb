@@ -11,9 +11,24 @@
 <div class="bg-white mx-auto py-5 px-5 mb-5 space-y-3 | sm:max-w-2xl sm:px-24">
   <h3 class="font-bold text-lg | sm:text-xl">Details</h3>
   <div class="text-slate-500 font-semibold space-y-3">
-    <p>Joined on <%= format_date(@user.created_at) %></p>
-    <p>Followed by <%= friends_count(@user) %></p>
-    <p><%= get_location(@user) %></p>
+    <div class="flex items-center gap-2">
+      <svg role="img" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="#64748b" height="20" viewBox="0 96 960 960" width="20" aria-hidden="true">
+        <path d="m616 773 62-60-154-155.229V367h-82v224.557L616 773Zm-135.862 228q-88.138 0-165.513-33.366-77.376-33.366-135.112-91.066-57.737-57.699-91.125-135.024T55 576.11Q55 488 88.584 410.513q33.583-77.488 91.012-134.917t134.823-91.512Q391.812 150 480 150q88.188 0 165.581 34.084 77.394 34.083 134.823 91.512t91.512 134.823Q906 487.812 906 576q0 88.188-34.084 165.581-34.083 77.394-91.512 134.823t-134.779 91.012Q568.276 1001 480.138 1001ZM480 576Zm-.509 331Q616 907 713.5 810.5t97.5-234Q811 439 713.632 342q-97.367-97-233.623-97Q343 245 246 341.877 149 438.753 149 576q0 138 96.991 234.5t233.5 96.5Z"/>
+      </svg>
+      <p>Joined on <%= format_date(@user.created_at) %></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <svg role="img" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="#64748b" height="20" viewBox="0 96 960 960" width="20" aria-hidden="true">
+        <path d="M15 934V813q0-42.302 21.695-76.099Q58.391 703.104 97 685q75-32 136.474-47 61.474-15 126.541-15Q427 623 487.5 637.5T623 685q38.344 16.826 60.672 50.696Q706 769.566 706 812.945V934H15Zm762 0V815q0-65-31.5-109.5T660 625q61 9 115.5 23.5T866 681q36 19 57.5 54.808 21.5 35.807 21.5 82.246V934H777ZM360.248 562Q288 562 243 517t-45-117.5q0-72.5 45.044-117.5 45.045-45 117-45Q432 237 477.5 282.031T523 399q0 73-45.252 118t-117.5 45ZM757 398.991Q757 471 711.553 516.5q-45.448 45.5-117.8 45.5-12.059 0-24.406-2T543 553q26-27 38.5-65.852 12.5-38.852 12.5-87.5t-12.655-86.131Q568.69 276.035 543 245.87q12-3.87 25.241-6.37t25.51-2.5q71.985 0 117.617 45.522Q757 328.045 757 398.991Z"/>
+      </svg>
+      <p>Followed by <%= friends_count(@user) %></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#64748b" aria-hidden="true">
+        <path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      <p><%= get_location(@user) %></p>
+    </div>
   </div>
 </div>
 
