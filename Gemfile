@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").strip
 
-gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem "rails", "7.0.6"
 
 gem "bootsnap", require: false
 gem "devise"
