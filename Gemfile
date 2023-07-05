@@ -35,9 +35,9 @@ end
 
 group :development do
   gem "letter_opener"
-  gem "rubocop", "~> 1.48", ">= 1.48.1", require: false
-  gem "rubocop-performance", "~> 1.16", require: false
-  gem "rubocop-rails", "~> 2.18", require: false
-  gem "rubocop-rspec", "~> 2.19", require: false
+  gem "rubocop", "~> 1.54", ">= 1.54.1", require: false
+  gem "rubocop-performance", "~> 1.18", require: false
+  gem "rubocop-rails", "~> 2.20", require: false
+  gem "rubocop-rspec", "~> 2.22", require: false
   gem "web-console"
 end
